@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <form>
+        <div>
+            <label>E-mail:</label>
+            <br>
+            <input type="email" name="email" id="email" placeholder="seu@email.com" onchange="validacao()">
+        </div>
+
+        <div>
+            <label>Senha</label>
+            <br>
+            <input type="password" name="password" id="password" placeholder="Digite sua Senha" onchange="validacao()">
+        </div>
+
+        <div>
+            <button type="button" id="login-button" disabled="true" onclick="login()">Entra</button>
+        </div>
+
+        <div>
+            <button type="button">Cadastrar</button>
+        </div>
+
+        <div>
+            <button type="button" disabled="true" id="recover-password-button">Recuperar senha</button>
+        </div>
+
+
+    </form>
+
+    <script src="script.js">
+
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/11.8.1/firebase-app-compat.js" ;></script>
+    <script src="https://www.gstatic.com/firebasejs/11.8.1/firebase-auth-compat.js" ;></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAIIFuZlv7i3Mt5Ba1QJtF7mRlH8l6iook",
+            authDomain: "loja-web1.firebaseapp.com",
+            projectId: "loja-web1",
+            storageBucket: "loja-web1.firebasestorage.app",
+            messagingSenderId: "551680108820",
+            appId: "1:551680108820:web:4aac220a8de1e025b07a01"
+        };
+
+
+        firebase.initializeApp(firebaseConfig);
+
+        function login() {
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('password').value;
+            firebase.auth().signInWithEmailAndPassword(email, senha).then(response => {
+                console.log('success', response)
+                window.location.href="index.html";
+            }).catch(error => {
+                console.log('error', error)
+            })
+        }
+        // console.log('antes');
+
+        // console.log('depois')
+    </script>
+
+
+</body>
+
+</html>
